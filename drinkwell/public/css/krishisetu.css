@@ -199,30 +199,21 @@ img{max-width:100%;display:block}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js-ready .reveal{opacity:1;transform:none}}
 
 /* ================= CUSTOM LOGIN ================= */
-body.ks-login{overflow:hidden}
-body.ks-login .navbar,body.ks-login .web-footer,body.ks-login footer{display:none!important}
-.ks-login-split{position:fixed;inset:0;display:flex;background:#fff;z-index:10;animation:ks-fade-up .6s both}
-.ks-login-left{flex:1;position:relative;display:flex;align-items:center;color:#fff;overflow:hidden}
-.ks-login-img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05);animation:ks-slowzoom 22s ease-in-out infinite alternate}
-.ks-login-veil{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,81,50,.93),rgba(26,127,75,.78))}
-.ks-login-content{position:relative;padding:8vh 5vw;max-width:600px}
-.ks-login-logo{font-family:'Poppins';font-size:1.7rem;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:38px}
-.ks-login-left h2{font-family:'Poppins';color:#fff;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15}
-.ks-login-left p{color:#dcefe4;font-size:1.12rem;margin-top:16px;max-width:46ch}
-.ks-login-stats{display:flex;gap:36px;margin-top:46px}
-.ks-login-stats b{font-family:'Poppins';font-size:1.9rem;display:block}
-.ks-login-stats span{color:#bfe0cf;font-size:.85rem}
-.ks-login-back{display:inline-block;margin-top:46px;color:#bfe0cf;font-weight:600}
-.ks-login-back:hover{color:#fff}
-.ks-login-right{flex:0 0 480px;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff}
-.ks-login .page-card{box-shadow:none!important;border:none!important;width:100%;max-width:380px;margin:0!important;background:transparent!important}
-.ks-login .page-card-head img{display:none}
-.ks-login .page-card-head{font-family:'Poppins';font-size:1.4rem;color:var(--ks-ink);margin-bottom:18px}
-.ks-login .form-control{border-radius:11px!important;padding:11px 14px!important}
-.ks-login .btn-primary,.ks-login .btn-login,.ks-login .btn-modal-primary{background:var(--ks-green)!important;border-color:var(--ks-green)!important;border-radius:11px!important}
-.ks-login .btn-primary:hover,.ks-login .btn-login:hover{background:var(--ks-green-d)!important}
-.ks-login a{color:var(--ks-green-d)}
-@media(max-width:860px){.ks-login-left{display:none}.ks-login-right{flex:1}.ks-login-split{position:relative;min-height:100vh}body.ks-login{overflow:auto}}
+body.ks-login{background:linear-gradient(135deg,#0f5132 0%,#1a7f4b 60%,#2e9e5b 100%)!important;min-height:100vh}
+body.ks-login::before{content:"";position:fixed;inset:0;background:url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80') center/cover no-repeat;opacity:.14;z-index:-1;pointer-events:none}
+body.ks-login .navbar,body.ks-login header.navbar,body.ks-login .navbar-brand,body.ks-login .web-footer,body.ks-login footer{display:none!important}
+.ks-login-brand{position:fixed;top:5vh;left:0;right:0;text-align:center;color:#fff;z-index:3;pointer-events:none;padding:0 16px}
+.ks-login-brand .lg{font-family:'Poppins','Inter',sans-serif;font-weight:700;font-size:1.7rem;display:inline-flex;align-items:center;gap:9px;color:#fff}
+.ks-login-brand p{color:#dcefe4;margin-top:6px;font-size:1rem}
+.ks-login-back{position:fixed;bottom:4vh;left:0;right:0;text-align:center;color:#dcefe4!important;z-index:3;font-weight:600;font-size:.95rem}
+.ks-login-back:hover{color:#fff!important}
+body.ks-login .page-card{position:relative;z-index:2;margin:0 auto!important;width:100%;max-width:400px;background:#fff!important;border:none!important;border-radius:16px!important;box-shadow:0 26px 64px rgba(0,0,0,.34)!important;padding:34px 32px!important}
+body.ks-login .page-card-head{font-family:'Poppins','Inter',sans-serif;margin-bottom:14px}
+body.ks-login .page-card-head img,body.ks-login .navbar img{display:none!important}
+body.ks-login .form-control,body.ks-login input.form-control{border-radius:10px!important;padding:11px 14px!important}
+body.ks-login .btn-primary,body.ks-login .btn-login,body.ks-login .btn-modal-primary,body.ks-login .btn.btn-primary{background:var(--ks-green)!important;border-color:var(--ks-green)!important;border-radius:10px!important;box-shadow:none!important}
+body.ks-login .btn-primary:hover,body.ks-login .btn-login:hover{background:var(--ks-green-d)!important}
+body.ks-login a{color:var(--ks-green-d)}
 
 /* ================= DASHBOARD CLEANUP ================= */
 .dash-hero{background:linear-gradient(135deg,#0f5132,#1a7f4b 60%,#2e9e5b)}

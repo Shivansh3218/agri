@@ -7,8 +7,8 @@ app_license = "MIT"
 app_version = "1.0.0"
 
 # Theme + interactions loaded on every website page (login included)
-web_include_css = "/assets/drinkwell/css/krishisetu.css?v=4"
-web_include_js = "/assets/drinkwell/js/ks.js?v=4"
+web_include_css = "/assets/drinkwell/css/krishisetu.css?v=5"
+web_include_js = "/assets/drinkwell/js/ks.js?v=5"
 
 website_context = {
     "favicon": "/assets/drinkwell/images/mark.svg",
