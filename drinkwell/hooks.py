@@ -6,16 +6,16 @@ app_email = "shivansh@10ximpact.in"
 app_license = "MIT"
 app_version = "1.0.0"
 
-# Load the platform theme on every website page (pages also link it directly)
+# Theme + interactions loaded on every website page (login included)
 web_include_css = "/assets/drinkwell/css/krishisetu.css"
+web_include_js = "/assets/drinkwell/js/ks.js"
 
-# Website
 website_context = {
-    "favicon": "/assets/drinkwell/images/favicon.png",
-    "splash_image": "/assets/drinkwell/images/favicon.png",
+    "favicon": "/assets/drinkwell/images/mark.svg",
+    "splash_image": "/assets/drinkwell/images/mark.svg",
 }
 
-# Make the landing page the site root
 home_page = "index"
 
-# Roles / fixtures could be added here later.
+# Re-apply KrishiSetu branding (desk logo, login, favicon) after every migrate
+after_migrate = ["drinkwell.api.branding.apply_branding"]

@@ -165,3 +165,78 @@ img{max-width:100%;display:block}
  .ks-burger{display:block}
  .ks-hero-stats{gap:24px}
 }
+
+/* ================= ANIMATIONS ================= */
+@keyframes ks-fade-up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes ks-slowzoom{from{transform:scale(1)}to{transform:scale(1.12)}}
+@keyframes ks-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes ks-mesh{0%{transform:translate(0,0)}50%{transform:translate(4%,3%)}100%{transform:translate(0,0)}}
+
+/* reveal only when JS is active, so no-JS users still see everything */
+.js-ready .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js-ready .reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.14s}.reveal.d3{transition-delay:.22s}.reveal.d4{transition-delay:.30s}
+
+/* hero entrance + motion */
+.js-ready .ks-hero-in>*{animation:ks-fade-up .85s both}
+.js-ready .ks-hero-in>*:nth-child(2){animation-delay:.10s}
+.js-ready .ks-hero-in>*:nth-child(3){animation-delay:.20s}
+.js-ready .ks-hero-in>*:nth-child(4){animation-delay:.30s}
+.js-ready .ks-hero-in>*:nth-child(5){animation-delay:.40s}
+.ks-hero .bgimg{animation:ks-slowzoom 20s ease-in-out infinite alternate}
+.ks-hero .veil{animation:ks-mesh 16s ease-in-out infinite}
+.ks-logo .leaf{animation:ks-float 4s ease-in-out infinite}
+
+/* nav shrink + shadow on scroll */
+.ks-nav-in{transition:height .3s ease}
+.ks-nav.scrolled{box-shadow:0 8px 28px rgba(15,81,50,.10)}
+.ks-nav.scrolled .ks-nav-in{height:58px}
+
+/* richer hover lifts */
+.stat,.chart-card,.scheme{transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
+.stat:hover,.chart-card:hover,.scheme:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,81,50,.15)}
+.btn-ks:active,.btn-amber:active,.btn-ghost:active{transform:translateY(1px)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js-ready .reveal{opacity:1;transform:none}}
+
+/* ================= CUSTOM LOGIN ================= */
+body.ks-login{overflow:hidden}
+body.ks-login .navbar,body.ks-login .web-footer,body.ks-login footer{display:none!important}
+.ks-login-split{position:fixed;inset:0;display:flex;background:#fff;z-index:10;animation:ks-fade-up .6s both}
+.ks-login-left{flex:1;position:relative;display:flex;align-items:center;color:#fff;overflow:hidden}
+.ks-login-img{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.05);animation:ks-slowzoom 22s ease-in-out infinite alternate}
+.ks-login-veil{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,81,50,.93),rgba(26,127,75,.78))}
+.ks-login-content{position:relative;padding:8vh 5vw;max-width:600px}
+.ks-login-logo{font-family:'Poppins';font-size:1.7rem;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:38px}
+.ks-login-left h2{font-family:'Poppins';color:#fff;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15}
+.ks-login-left p{color:#dcefe4;font-size:1.12rem;margin-top:16px;max-width:46ch}
+.ks-login-stats{display:flex;gap:36px;margin-top:46px}
+.ks-login-stats b{font-family:'Poppins';font-size:1.9rem;display:block}
+.ks-login-stats span{color:#bfe0cf;font-size:.85rem}
+.ks-login-back{display:inline-block;margin-top:46px;color:#bfe0cf;font-weight:600}
+.ks-login-back:hover{color:#fff}
+.ks-login-right{flex:0 0 480px;display:flex;align-items:center;justify-content:center;padding:24px;background:#fff}
+.ks-login .page-card{box-shadow:none!important;border:none!important;width:100%;max-width:380px;margin:0!important;background:transparent!important}
+.ks-login .page-card-head img{display:none}
+.ks-login .page-card-head{font-family:'Poppins';font-size:1.4rem;color:var(--ks-ink);margin-bottom:18px}
+.ks-login .form-control{border-radius:11px!important;padding:11px 14px!important}
+.ks-login .btn-primary,.ks-login .btn-login,.ks-login .btn-modal-primary{background:var(--ks-green)!important;border-color:var(--ks-green)!important;border-radius:11px!important}
+.ks-login .btn-primary:hover,.ks-login .btn-login:hover{background:var(--ks-green-d)!important}
+.ks-login a{color:var(--ks-green-d)}
+@media(max-width:860px){.ks-login-left{display:none}.ks-login-right{flex:1}.ks-login-split{position:relative;min-height:100vh}body.ks-login{overflow:auto}}
+
+/* ================= DASHBOARD CLEANUP ================= */
+.dash-hero{background:linear-gradient(135deg,#0f5132,#1a7f4b 60%,#2e9e5b)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.kpi{background:#fff;border:1px solid var(--ks-line);border-radius:16px;padding:20px;box-shadow:var(--ks-shadow);display:flex;gap:14px;align-items:center;transition:transform .25s,box-shadow .25s}
+.kpi:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,81,50,.15)}
+.kpi-ic{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;font-size:22px;flex:none}
+.ic-green{background:var(--ks-green-l);color:var(--ks-green-d)}
+.ic-amber{background:#fdf1d8;color:var(--ks-amber-d)}
+.ic-red{background:#fbe3e3;color:var(--ks-sev)}
+.ic-earth{background:#efe7db;color:var(--ks-earth)}
+.kpi-n{font-family:'Poppins';font-size:2rem;font-weight:700;color:var(--ks-ink);line-height:1;min-height:32px}
+.kpi-l{color:var(--ks-muted);font-size:.9rem;margin-top:5px;display:flex;align-items:center;gap:8px}
+.skel{display:inline-block;width:58px;height:26px;border-radius:7px;background:linear-gradient(90deg,#eef3ee 25%,#dfe8df 37%,#eef3ee 63%);background-size:400% 100%;animation:ks-shimmer 1.3s ease infinite}
+@keyframes ks-shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+@media(max-width:900px){.kpi-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.kpi-grid{grid-template-columns:1fr}}

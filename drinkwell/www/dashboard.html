@@ -11,66 +11,98 @@
 <header class="ks-nav"><div class="ks-container ks-nav-in">
   <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
   <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
-  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="active">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
-    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+  <nav class="ks-links" id="kslinks"><a href="/">Home</a><a href="/dashboard" class="active">Dashboard</a><a href="/farmers">Farmers</a><a href="/insights">Insights</a><a href="/schemes">Schemes</a><a href="/about">About</a>
     <a href="/survey" class="btn-ks">Take Survey</a>
   </nav>
 </div></header>
-<section class="ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b);color:#fff">
-  <div class="ks-container" style="padding:48px 24px 44px">
+
+<section class="ks-full dash-hero">
+  <div class="ks-container" style="padding:40px 24px 96px">
     <span class="ks-pill">Live analytics</span>
-    <h1 style="color:#fff;font-size:2.3rem;margin-top:14px">Farmer Insights Dashboard</h1>
-    <p style="color:#dcefe4;max-width:60ch;margin-top:10px">Every chart below is computed live from survey records. Submit a new survey and watch the numbers move.</p>
-  </div></section>
-<section class="ks-section"><div class="ks-container">
-  <div class="ks-grid g4" id="kpis">
-    <div class="stat"><div class="n" id="k-total">&mdash;</div><div class="l">Total responses</div></div>
-    <div class="stat"><div class="n" id="k-vuln">&mdash;</div><div class="l">Avg vulnerability score</div><span class="tag" id="k-vuln-band">&mdash;</span></div>
-    <div class="stat"><div class="n" id="k-severe">&mdash;</div><div class="l">High or Severe risk farmers</div></div>
-    <div class="stat"><div class="n" id="k-regions">3</div><div class="l">Districts represented</div></div>
+    <h1 style="color:#fff;font-size:2.1rem;margin-top:12px">Farmer Insights Dashboard</h1>
+    <p style="color:#dcefe4;max-width:58ch;margin-top:8px">A live read on farmer wellbeing across all surveyed districts &mdash; updated the moment a new response arrives.</p>
   </div>
+</section>
 
-  <div class="ks-grid g2 mt24">
-    <div class="chart-card"><h3>Vulnerability band distribution</h3><div class="sub">How many farmers fall in each risk band</div><div class="chart-wrap"><canvas id="c-bands"></canvas></div></div>
-    <div class="chart-card"><h3>Risk by district</h3><div class="sub">Band breakdown per district (stacked)</div><div class="chart-wrap"><canvas id="c-region"></canvas></div></div>
+<div class="ks-container" style="margin-top:-64px;position:relative;z-index:2">
+  <div class="kpi-grid">
+    <div class="kpi"><span class="kpi-ic ic-green">&#128101;</span>
+      <div class="kpi-body"><div class="kpi-n" id="k-total"><span class="skel"></span></div><div class="kpi-l">Total responses</div></div></div>
+    <div class="kpi"><span class="kpi-ic ic-amber">&#128200;</span>
+      <div class="kpi-body"><div class="kpi-n" id="k-vuln"><span class="skel"></span></div><div class="kpi-l">Avg vulnerability <span class="band" id="k-vuln-band" style="display:none"></span></div></div></div>
+    <div class="kpi"><span class="kpi-ic ic-red">&#9888;</span>
+      <div class="kpi-body"><div class="kpi-n" id="k-severe"><span class="skel"></span></div><div class="kpi-l">High or Severe risk</div></div></div>
+    <div class="kpi"><span class="kpi-ic ic-earth">&#128205;</span>
+      <div class="kpi-body"><div class="kpi-n" id="k-regions">3</div><div class="kpi-l">Districts covered</div></div></div>
   </div>
+</div>
 
-  <div class="chart-card mt24"><h3>Stress indicators across all farmers</h3><div class="sub">Share of farmers (%) reporting each pressure</div><div class="chart-wrap tall"><canvas id="c-ind"></canvas></div></div>
+<section class="ks-section" style="padding-top:44px">
+  <div class="ks-container">
 
-  <div class="ks-grid g3 mt24">
-    <div class="chart-card"><h3>Education level</h3><div class="sub">Highest education attained</div><div class="chart-wrap"><canvas id="c-edu"></canvas></div></div>
-    <div class="chart-card"><h3>Market access</h3><div class="sub">Where farmers sell their crop</div><div class="chart-wrap"><canvas id="c-market"></canvas></div></div>
-    <div class="chart-card"><h3>Govt support satisfaction</h3><div class="sub">Sentiment toward support</div><div class="chart-wrap"><canvas id="c-gov"></canvas></div></div>
+    <div id="dash-empty" style="display:none">
+      <div class="card center" style="max-width:560px;margin:10px auto">
+        <div class="ic" style="margin:0 auto 12px">&#127793;</div>
+        <h3>No survey data yet</h3>
+        <p class="muted">This dashboard fills with live charts as responses come in.</p>
+        <a href="/survey" class="btn-ks" style="margin-top:16px">Take the survey &rarr;</a>
+      </div>
+    </div>
+
+    <div id="dash-error" style="display:none">
+      <div class="card center" style="max-width:560px;margin:10px auto;border-left:5px solid var(--ks-sev)">
+        <h3>Couldn't load the data</h3>
+        <p class="muted">Make sure the app is migrated, seeded and running, then refresh.</p>
+      </div>
+    </div>
+
+    <div id="dash-charts">
+      <div class="ks-eyebrow">Risk overview</div>
+      <div class="ks-grid g2 mt16">
+        <div class="chart-card"><h3>Vulnerability band distribution</h3><div class="sub">How many farmers fall in each risk band</div><div class="chart-wrap"><canvas id="c-bands"></canvas></div></div>
+        <div class="chart-card"><h3>Risk by district</h3><div class="sub">Band breakdown per district (stacked)</div><div class="chart-wrap"><canvas id="c-region"></canvas></div></div>
+      </div>
+
+      <div class="chart-card mt24"><h3>Stress indicators across all farmers</h3><div class="sub">Share of farmers (%) reporting each pressure</div><div class="chart-wrap tall"><canvas id="c-ind"></canvas></div></div>
+
+      <div class="ks-eyebrow" style="display:block;margin-top:44px">Who the farmers are</div>
+      <div class="ks-grid g3 mt16">
+        <div class="chart-card"><h3>Education level</h3><div class="sub">Highest education attained</div><div class="chart-wrap"><canvas id="c-edu"></canvas></div></div>
+        <div class="chart-card"><h3>Market access</h3><div class="sub">Where farmers sell their crop</div><div class="chart-wrap"><canvas id="c-market"></canvas></div></div>
+        <div class="chart-card"><h3>Govt support satisfaction</h3><div class="sub">Sentiment toward support</div><div class="chart-wrap"><canvas id="c-gov"></canvas></div></div>
+      </div>
+
+      <div class="ks-grid g2 mt24">
+        <div class="chart-card"><h3>Top crops grown</h3><div class="sub">Primary crop combinations</div><div class="chart-wrap"><canvas id="c-crop"></canvas></div></div>
+        <div class="chart-card"><h3>Fertilizer usage pattern</h3><div class="sub">Chemical vs mixed</div><div class="chart-wrap"><canvas id="c-fert"></canvas></div></div>
+      </div>
+      <div class="center mt40"><a href="/farmers" class="btn-ks">Explore individual farmers &rarr;</a></div>
+    </div>
+
   </div>
+</section>
 
-  <div class="ks-grid g2 mt24">
-    <div class="chart-card"><h3>Top crops grown</h3><div class="sub">Primary crop combinations</div><div class="chart-wrap"><canvas id="c-crop"></canvas></div></div>
-    <div class="chart-card"><h3>Fertilizer usage pattern</h3><div class="sub">Chemical vs mixed</div><div class="chart-wrap"><canvas id="c-fert"></canvas></div></div>
-  </div>
-  <div class="center mt40"><a href="/farmers" class="btn-ks">Explore individual farmers &rarr;</a></div>
-</div></section>
-<div class="loading" id="dash-load" style="display:none">Loading live data&hellip;</div>
 <footer class="ks-footer"><div class="ks-container">
   <div class="cols">
     <div>
       <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
-      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights &amp; survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha &amp; Sambhal Nagar.</p>
     </div>
     <div><h4>Platform</h4>
       <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
-      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+      <a href="/insights">Insights &amp; Findings</a><a href="/survey">Take the Survey</a></div>
     <div><h4>Resources</h4>
       <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
-      <a href="/app">Frappe Desk</a></div>
+      <a href="/login">Staff Login</a></div>
   </div>
-  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>Farmer survey &middot; 3 districts</span></div>
 </div></footer>
 </div>
 {% raw %}<script>
 const GREEN="#1a7f4b",GREEND="#0f5132",AMBER="#f4a723",EARTH="#6b4f2a";
 const BAND={Low:"#2e9e5b",Moderate:"#f4a723",High:"#e8722e",Severe:"#d64545"};
 const PAL=["#1a7f4b","#f4a723","#2e9e5b","#6b4f2a","#e8722e","#4a90c2","#8e6cb8","#d64545"];
-Chart.defaults.font.family="Inter,sans-serif";Chart.defaults.color="#5d6b62";
+Chart.defaults.font.family="Inter,sans-serif";Chart.defaults.color="#5d6b62";Chart.defaults.animation.duration=900;
 function doughnut(id,labels,data,colors){new Chart(document.getElementById(id),{type:"doughnut",
   data:{labels:labels,datasets:[{data:data,backgroundColor:colors,borderWidth:2,borderColor:"#fff"}]},
   options:{responsive:true,maintainAspectRatio:false,cutout:"58%",plugins:{legend:{position:"bottom",labels:{boxWidth:12,padding:12}}}}});}
@@ -82,33 +114,32 @@ function barV(id,labels,data,color){new Chart(document.getElementById(id),{type:
   data:{labels:labels,datasets:[{data:data,backgroundColor:color,borderRadius:6}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
   scales:{y:{grid:{color:"#eef3ee"},beginAtZero:true},x:{grid:{display:false}}}}});}
-
+const g=id=>document.getElementById(id);
+function setN(id,v){var e=g(id);if(e)e.textContent=v;}
 frappe.call({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
-  const m=r.message; if(!m)return;
-  const g=id=>document.getElementById(id);
-  g("k-total").textContent=m.total;
-  g("k-vuln").textContent=m.avg_vulnerability;
-  const avg=m.avg_vulnerability; g("k-vuln-band").textContent= avg>=70?"Severe":avg>=50?"High":avg>=30?"Moderate":"Low";
+  const m=r.message; if(!m){throw new Error("no data");}
+  if(!m.total){g("dash-charts").style.display="none";g("dash-empty").style.display="block";
+    setN("k-total","0");setN("k-vuln","0");setN("k-severe","0");return;}
+  setN("k-total",m.total);setN("k-vuln",m.avg_vulnerability);
+  const avg=m.avg_vulnerability,bd=avg>=70?"Severe":avg>=50?"High":avg>=30?"Moderate":"Low";
+  var vb=g("k-vuln-band");if(vb){vb.textContent=bd;vb.className="band "+bd;vb.style.display="inline-block";}
   const bandMap={}; m.bands.forEach(b=>bandMap[b.label]=b.value);
-  g("k-severe").textContent=(bandMap["High"]||0)+(bandMap["Severe"]||0);
-  g("k-regions").textContent=(m.regions||[]).length;
-
+  setN("k-severe",(bandMap["High"]||0)+(bandMap["Severe"]||0));
+  setN("k-regions",(m.regions||[]).length);
   doughnut("c-bands",m.bands.map(b=>b.label),m.bands.map(b=>b.value),m.bands.map(b=>BAND[b.label]));
-
   const rb=m.region_band_matrix,order=rb.band_order;
   new Chart(g("c-region"),{type:"bar",data:{labels:rb.regions,
-    datasets:order.map(bd=>({label:bd,data:rb.regions.map(rg=>rb.matrix[rg][bd]||0),backgroundColor:BAND[bd],borderRadius:4}))},
+    datasets:order.map(b=>({label:b,data:rb.regions.map(rg=>rb.matrix[rg][b]||0),backgroundColor:BAND[b],borderRadius:4}))},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:"bottom"}},
     scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:"#eef3ee"}}}}});
-
   const ind=m.indicators.slice().sort((a,b)=>b.value-a.value);
   barH("c-ind",ind.map(i=>i.label),ind.map(i=>i.value),GREEN);
-
   barV("c-edu",m.education.map(e=>e.label),m.education.map(e=>e.value),GREEND);
   doughnut("c-market",m.market_access.map(e=>e.label),m.market_access.map(e=>e.value),PAL);
   doughnut("c-gov",m.govt_satisfaction.map(e=>e.label),m.govt_satisfaction.map(e=>e.value),["#d64545","#f4a723","#2e9e5b"]);
   barH("c-crop",m.crops.map(e=>e.label),m.crops.map(e=>e.value),AMBER);
   doughnut("c-fert",m.fertilizer.map(e=>e.label),m.fertilizer.map(e=>e.value),[EARTH,GREEN,AMBER]);
-}).catch(e=>{document.getElementById("dash-load").style.display="block";document.getElementById("dash-load").textContent="Could not load data. Ensure the app is migrated and seeded.";});
+}).catch(e=>{g("dash-charts").style.display="none";g("dash-error").style.display="block";
+  setN("k-total","—");setN("k-vuln","—");setN("k-severe","—");});
 </script>{% endraw %}
 {% endblock %}
