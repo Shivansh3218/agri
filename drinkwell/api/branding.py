@@ -6,8 +6,12 @@ MARK = "/assets/drinkwell/images/mark.svg"
 
 
 def apply_branding():
-    # Desk navbar — clear logo so only the app name text shows
+    # Desk navbar — clear logo via both ORM and direct SQL to ensure it's gone
     frappe.db.set_single_value("Navbar Settings", "app_logo", None)
+    frappe.db.sql(
+        "UPDATE `tabSingles` SET `value`=NULL WHERE `doctype`='Navbar Settings' AND `field`='app_logo'"
+    )
+    frappe.db.set_default("_default_app_logo_url", "")
 
     # Website brand / login page / favicon
     frappe.db.set_single_value("Website Settings", "app_name", "KrishiSetu")

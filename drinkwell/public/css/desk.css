@@ -1,0 +1,8 @@
+/* Hide drinkwell logo image in Frappe desk navbar */
+img.app-logo,
+.navbar-home img,
+.brand-logo img,
+.navbar-logo img,
+.navbar-header img {
+    display: none !important;
+}

@@ -7,8 +7,11 @@ app_license = "MIT"
 app_version = "1.0.0"
 
 # Theme + interactions loaded on every website page (login included)
-web_include_css = "/assets/drinkwell/css/krishisetu.css?v=6"
+web_include_css = "/assets/drinkwell/css/krishisetu.css?v=7"
 web_include_js = "/assets/drinkwell/js/ks.js?v=6"
+
+# Desk-only: hide drinkwell logo, rely on System Settings app_name for text
+app_include_css = ["/assets/drinkwell/css/desk.css?v=1"]
 
 website_context = {
     "favicon": "/assets/drinkwell/images/mark.svg",
