@@ -240,3 +240,7 @@ body.ks-login .navbar,body.ks-login .web-footer,body.ks-login footer{display:non
 @keyframes ks-shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
 @media(max-width:900px){.kpi-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.kpi-grid{grid-template-columns:1fr}}
+
+/* dark-background outline button (never white-on-white on hover) */
+.btn-ghost-light{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1.5px solid rgba(255,255,255,.5);color:#fff!important;padding:11px 20px;border-radius:12px;font-weight:600;font-size:.95rem;transition:.2s;cursor:pointer}
+.btn-ghost-light:hover{background:rgba(255,255,255,.16);border-color:#fff;color:#fff!important;transform:translateY(-1px)}

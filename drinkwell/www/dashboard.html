@@ -3,7 +3,7 @@
 {% block head_include %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css?v=4">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 {% endblock %}
 {% block page_content %}
@@ -12,6 +12,7 @@
   <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
   <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
   <nav class="ks-links" id="kslinks"><a href="/">Home</a><a href="/dashboard" class="active">Dashboard</a><a href="/farmers">Farmers</a><a href="/insights">Insights</a><a href="/schemes">Schemes</a><a href="/about">About</a>
+    <a href="/login" class="btn-ghost" style="margin-left:6px">Login</a>
     <a href="/survey" class="btn-ks">Take Survey</a>
   </nav>
 </div></header>
@@ -99,6 +100,7 @@
 </div></footer>
 </div>
 {% raw %}<script>
+function ksCall(o){var m=o.method,a=o.args||{},post=/submit_survey/.test(m),u="/api/method/"+m,f={headers:{Accept:"application/json"},credentials:"same-origin"};if(post){f.method="POST";f.headers["Content-Type"]="application/json";var t=(window.frappe&&frappe.csrf_token)||"";if(t&&t!=="None")f.headers["X-Frappe-CSRF-Token"]=t;f.body=JSON.stringify(a);}else{var q=Object.keys(a).filter(function(k){return a[k]!=null&&a[k]!==""}).map(function(k){return encodeURIComponent(k)+"="+encodeURIComponent(a[k])}).join("&");if(q)u+="?"+q;}return fetch(u,f).then(function(r){return r.json();});}
 const GREEN="#1a7f4b",GREEND="#0f5132",AMBER="#f4a723",EARTH="#6b4f2a";
 const BAND={Low:"#2e9e5b",Moderate:"#f4a723",High:"#e8722e",Severe:"#d64545"};
 const PAL=["#1a7f4b","#f4a723","#2e9e5b","#6b4f2a","#e8722e","#4a90c2","#8e6cb8","#d64545"];
@@ -116,7 +118,7 @@ function barV(id,labels,data,color){new Chart(document.getElementById(id),{type:
   scales:{y:{grid:{color:"#eef3ee"},beginAtZero:true},x:{grid:{display:false}}}}});}
 const g=id=>document.getElementById(id);
 function setN(id,v){var e=g(id);if(e)e.textContent=v;}
-frappe.call({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
+ksCall({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
   const m=r.message; if(!m){throw new Error("no data");}
   if(!m.total){g("dash-charts").style.display="none";g("dash-empty").style.display="block";
     setN("k-total","0");setN("k-vuln","0");setN("k-severe","0");return;}

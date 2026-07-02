@@ -3,7 +3,7 @@
 {% block head_include %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css?v=4">
 
 {% endblock %}
 {% block page_content %}
@@ -12,6 +12,7 @@
   <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
   <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
   <nav class="ks-links" id="kslinks"><a href="/" class="active">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/login" class="btn-ghost" style="margin-left:6px">Login</a>
     <a href="/survey" class="btn-ks">Take Survey</a>
   </nav>
 </div></header>
@@ -24,7 +25,7 @@
     <p>KrishiSetu collects, analyses and visualises real farmer survey data across rural India &mdash; surfacing income stress, climate risk and scheme gaps so support reaches the farmers who need it most.</p>
     <div class="ks-hero-cta">
       <a href="/survey" class="btn-ks">Take the Survey &rarr;</a>
-      <a href="/dashboard" class="btn-ghost" style="color:#fff!important;border-color:rgba(255,255,255,.4)">Explore the Data</a>
+      <a href="/dashboard" class="btn-ghost-light">Explore the Data</a>
     </div>
     <div class="ks-hero-stats">
       <div><div class="n" id="hs-total">396</div><div class="l">Farmers surveyed</div></div>
@@ -100,7 +101,8 @@
 </div></footer>
 </div>
 {% raw %}<script>
-frappe.call({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
+function ksCall(o){var m=o.method,a=o.args||{},post=/submit_survey/.test(m),u="/api/method/"+m,f={headers:{Accept:"application/json"},credentials:"same-origin"};if(post){f.method="POST";f.headers["Content-Type"]="application/json";var t=(window.frappe&&frappe.csrf_token)||"";if(t&&t!=="None")f.headers["X-Frappe-CSRF-Token"]=t;f.body=JSON.stringify(a);}else{var q=Object.keys(a).filter(function(k){return a[k]!=null&&a[k]!==""}).map(function(k){return encodeURIComponent(k)+"="+encodeURIComponent(a[k])}).join("&");if(q)u+="?"+q;}return fetch(u,f).then(function(r){return r.json();});}
+ksCall({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
   if(!r||!r.message)return; const m=r.message;
   const set=(id,v)=>{const e=document.getElementById(id); if(e)e.textContent=v;};
   set("hs-total",m.total); set("hs-vuln",m.avg_vulnerability);
