@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-01-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "farmer_name",
+  "region",
+  "village",
+  "cb1",
+  "age",
+  "gender",
+  "primary_crop",
+  "land_size",
+  "sec_link",
+  "latest_survey",
+  "vulnerability_band"
+ ],
+ "fields": [
+  {
+   "fieldname": "farmer_name",
+   "fieldtype": "Data",
+   "label": "Farmer Name",
+   "reqd": 1,
+   "in_list_view": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "Sonipat\nAmroha\nS. Nagar",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "label": "Village",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "cb1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "M\nF"
+  },
+  {
+   "fieldname": "primary_crop",
+   "fieldtype": "Data",
+   "label": "Primary Crop",
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "land_size",
+   "fieldtype": "Data",
+   "label": "Land Size"
+  },
+  {
+   "fieldname": "sec_link",
+   "fieldtype": "Section Break",
+   "label": "Survey"
+  },
+  {
+   "fieldname": "latest_survey",
+   "fieldtype": "Link",
+   "label": "Latest Survey Response",
+   "options": "Farmer Survey Response"
+  },
+  {
+   "fieldname": "vulnerability_band",
+   "fieldtype": "Select",
+   "label": "Vulnerability Band",
+   "options": "Low\nModerate\nHigh\nSevere",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Drinkwell",
+ "name": "Farmer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Agriculture Officer",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:farmer_name",
+ "naming_rule": "By fieldname",
+ "title_field": "farmer_name"
+}

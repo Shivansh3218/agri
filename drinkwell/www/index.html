@@ -1,0 +1,115 @@
+{% extends "templates/web.html" %}
+{% block title %}KrishiSetu — Farmer Insights Platform{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="active">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-hero ks-full">
+  <img class="bgimg" src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1600&q=80" alt="" onerror="this.style.display='none'">
+  <div class="veil"></div>
+  <div class="ks-hero-in">
+    <span class="ks-pill">&#127793; Field-verified farmer intelligence</span>
+    <h1>Turning farmer voices into decisions that matter.</h1>
+    <p>KrishiSetu collects, analyses and visualises real farmer survey data across rural India &mdash; surfacing income stress, climate risk and scheme gaps so support reaches the farmers who need it most.</p>
+    <div class="ks-hero-cta">
+      <a href="/survey" class="btn-ks">Take the Survey &rarr;</a>
+      <a href="/dashboard" class="btn-ghost" style="color:#fff!important;border-color:rgba(255,255,255,.4)">Explore the Data</a>
+    </div>
+    <div class="ks-hero-stats">
+      <div><div class="n" id="hs-total">396</div><div class="l">Farmers surveyed</div></div>
+      <div><div class="n">3</div><div class="l">Districts covered</div></div>
+      <div><div class="n">42</div><div class="l">Questions per farmer</div></div>
+      <div><div class="n" id="hs-vuln">&mdash;</div><div class="l">Avg vulnerability</div></div>
+    </div>
+  </div>
+</section><section class="ks-section"><div class="ks-container">
+  <div class="ks-grid g4">
+    <div class="stat"><div class="n" id="st-income">82%</div><div class="l">Say farming income is <b>not enough</b> to sustain the household</div></div>
+    <div class="stat"><div class="n" id="st-cost">94%</div><div class="l">Find input costs a <b>serious burden</b></div></div>
+    <div class="stat"><div class="n" id="st-msp">69%</div><div class="l">Do <b>not</b> sell crops at MSP</div></div>
+    <div class="stat"><div class="n" id="st-shift">84%</div><div class="l">Wish to <b>shift away</b> from farming if given the chance</div></div>
+  </div>
+</div></section><section class="ks-section alt"><div class="ks-container">
+  <div class="center" style="max-width:720px;margin:0 auto 44px">
+    <div class="ks-eyebrow">What KrishiSetu does</div>
+    <h2 class="ks-h2">One platform, from field to decision</h2>
+    <p class="ks-lead" style="margin:0 auto">Every response is captured, scored for vulnerability, and rolled up into live dashboards &mdash; giving officers, NGOs and policymakers a clear, current picture of farmer wellbeing.</p>
+  </div>
+  <div class="ks-grid g3">
+    <div class="card hover"><div class="ic">&#128221;</div><h3>Structured Data Collection</h3><p>A guided, multi-step survey captures demographics, farm profile, income, climate and finance signals &mdash; validated and stored as clean records.</p></div>
+    <div class="card hover"><div class="ic">&#128202;</div><h3>Live Analytics</h3><p>Interactive charts break down vulnerability by district, education, crop and market access &mdash; updating the moment a new response lands.</p></div>
+    <div class="card hover"><div class="ic">&#129534;</div><h3>Vulnerability Scoring</h3><p>Each farmer gets an automatic 0&ndash;100 risk score across ten stress indicators, banded Low to Severe for fast triage.</p></div>
+    <div class="card hover"><div class="ic">&#128100;</div><h3>Farmer Directory</h3><p>Search and filter every surveyed farmer, drill into an individual profile, and generate a shareable assessment report.</p></div>
+    <div class="card hover"><div class="ic">&#127974;</div><h3>Scheme Awareness</h3><p>Map farmers against government schemes like PMFBY, PM-KISAN and KCC to spot who is missing out on entitled support.</p></div>
+    <div class="card hover"><div class="ic">&#9881;</div><h3>Frappe-Powered</h3><p>Built as a full Frappe app &mdash; every survey, farmer, crop and scheme is a managed DocType, editable from the admin desk.</p></div>
+  </div>
+</div></section><section class="ks-section"><div class="ks-container">
+  <div class="ks-grid g2" style="align-items:center">
+    <div>
+      <div class="ks-eyebrow">Where the data comes from</div>
+      <h2 class="ks-h2">Three districts, one shared struggle</h2>
+      <p class="ks-lead">Our field teams surveyed farmers across Sonipat (Haryana), Amroha and Sambhal Nagar (Uttar Pradesh). Wheat and rice dominate, borewells strain groundwater, and middlemen still set the price at the gate.</p>
+      <div class="ks-grid g3 mt24">
+        <div class="stat"><div class="n">200</div><div class="l">Sonipat</div></div>
+        <div class="stat"><div class="n">99</div><div class="l">Amroha</div></div>
+        <div class="stat"><div class="n">97</div><div class="l">Sambhal Nagar</div></div>
+      </div>
+      <a href="/insights" class="btn-ks mt24" style="margin-top:26px">Read the key findings &rarr;</a>
+    </div>
+    <div><img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1200&q=80" alt="Farm field" style="border-radius:20px;box-shadow:0 20px 50px rgba(15,81,50,.2);width:100%;height:420px;object-fit:cover" onerror="this.style.background='linear-gradient(135deg,#1a7f4b,#0f5132)';this.removeAttribute('src')"></div>
+  </div>
+</div></section><section class="ks-section alt"><div class="ks-container">
+  <div class="center" style="max-width:680px;margin:0 auto 44px"><div class="ks-eyebrow">How it works</div><h2 class="ks-h2">From a single answer to a national picture</h2></div>
+  <div class="ks-grid g4">
+    <div class="card"><div class="ic">1</div><h3>Survey</h3><p>A farmer (or field officer) fills the guided form in minutes.</p></div>
+    <div class="card"><div class="ic">2</div><h3>Score</h3><p>The platform computes a vulnerability score the instant it is saved.</p></div>
+    <div class="card"><div class="ic">3</div><h3>Visualise</h3><p>Dashboards and the directory update live with the new record.</p></div>
+    <div class="card"><div class="ic">4</div><h3>Act</h3><p>Officers target schemes and support to the highest-risk farmers.</p></div>
+  </div>
+</div></section><section class="ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b)">
+  <div class="ks-container center" style="padding:70px 24px;color:#fff">
+    <h2 style="color:#fff;font-size:2rem">Add your voice to the data.</h2>
+    <p style="color:#dcefe4;max-width:52ch;margin:14px auto 26px">The more farmers we hear from, the sharper the picture &mdash; and the better the support that follows.</p>
+    <a href="/survey" class="btn-amber">Start the Survey &rarr;</a>
+  </div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+{% raw %}<script>
+frappe.call({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
+  if(!r||!r.message)return; const m=r.message;
+  const set=(id,v)=>{const e=document.getElementById(id); if(e)e.textContent=v;};
+  set("hs-total",m.total); set("hs-vuln",m.avg_vulnerability);
+  const ind={}; (m.indicators||[]).forEach(i=>ind[i.label]=i.value);
+  set("st-income",(ind["Income not sufficient"]||82)+"%");
+  set("st-cost",(ind["Input costs a burden"]||94)+"%");
+  set("st-msp",(ind["Do NOT sell at MSP"]||69)+"%");
+  set("st-shift",(ind["Wish to quit farming"]||84)+"%");
+});
+</script>{% endraw %}
+{% endblock %}

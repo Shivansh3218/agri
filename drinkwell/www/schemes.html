@@ -1,0 +1,65 @@
+{% extends "templates/web.html" %}
+{% block title %}Government Schemes — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="active">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-hero ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b)">
+  <div class="ks-hero-in"><span class="ks-pill">Government support</span>
+   <h1>Schemes every farmer should know.</h1>
+   <p>The support exists &mdash; awareness and access are the gap. Here are the key national schemes, straight from the platform's records.</p>
+  </div></section>
+<section class="ks-section"><div class="ks-container">
+  {% if schemes %}
+  <div class="ks-grid g2">
+   {% for s in schemes %}
+   <div class="scheme">
+     <span class="code">{{ s.short_code or s.scheme_name }}</span>
+     <span class="cat"> &middot; {{ s.category }}</span>
+     <h3>{{ s.scheme_name }}</h3>
+     <p class="muted">{{ s.description }}</p>
+     {% if s.benefit_summary %}<p class="mt8"><b>Benefit:</b> {{ s.benefit_summary }}</p>{% endif %}
+     {% if s.eligibility %}<p class="mt8"><b>Who is eligible:</b> {{ s.eligibility }}</p>{% endif %}
+     {% if s.how_to_apply %}<p class="mt8"><b>How to apply:</b> {{ s.how_to_apply }}</p>{% endif %}
+     {% if s.official_url %}<a class="btn-ghost mt16" style="margin-top:12px" href="{{ s.official_url }}" target="_blank" rel="noopener">Official site &rarr;</a>{% endif %}
+   </div>
+   {% endfor %}
+  </div>
+  {% else %}
+  <div class="card center"><h3>Scheme data not loaded yet</h3><p class="muted">Run the seeding command on the server to populate government schemes.</p></div>
+  {% endif %}
+  <div class="card mt40" style="border-left:5px solid var(--ks-amber)">
+    <h3>Why this page matters</h3>
+    <p class="mt8 muted">Our survey found near-universal awareness of PMFBY but almost zero uptake. Bridging that gap &mdash; from &ldquo;heard of it&rdquo; to &ldquo;enrolled&rdquo; &mdash; is one of the clearest, most actionable opportunities in the data.</p>
+  </div>
+</div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+
+{% endblock %}

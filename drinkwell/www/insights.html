@@ -1,0 +1,70 @@
+{% extends "templates/web.html" %}
+{% block title %}Key Findings — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="active">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-hero ks-full" style="background:linear-gradient(135deg,#6b4f2a,#0f5132)">
+  <img class="bgimg" src="https://images.unsplash.com/photo-1591086288015-1c2a9df60b40?w=1200&q=80" onerror="this.style.display='none'"><div class="veil"></div>
+  <div class="ks-hero-in"><span class="ks-pill">Key findings</span>
+   <h1>What 396 farmers told us.</h1>
+   <p>Ten headline signals from the field &mdash; the stress points that a spreadsheet alone would never surface.</p>
+  </div></section>
+<section class="ks-section"><div class="ks-container">
+  <div class="ks-grid g2">
+    <div class="card hover"><h3>&#128176; Income doesn't stretch</h3><p class="mt8"><b id="f-income">82%</b> of farmers say their farming income is not enough to sustain the household &mdash; the single loudest signal in the dataset.</p></div>
+    <div class="card hover"><h3>&#128201; Costs are crushing</h3><p class="mt8"><b id="f-cost">94%</b> report that input costs &mdash; labour, fertilizer, irrigation &mdash; are a serious burden on their farming.</p></div>
+    <div class="card hover"><h3>&#127974; Insurance on paper only</h3><p class="mt8"><b id="f-pmfby">95%</b> have heard of PMFBY, yet virtually none have ever actually availed crop insurance under it.</p></div>
+    <div class="card hover"><h3>&#128722; The middleman still wins</h3><p class="mt8"><b id="f-msp">69%</b> do not sell at MSP, and a large share still depend on local traders and middlemen at the farm gate.</p></div>
+    <div class="card hover"><h3>&#128167; Water is running low</h3><p class="mt8"><b id="f-water">57%</b> report groundwater depletion or water shortages for irrigation &mdash; a slow-moving crisis under borewell-heavy districts.</p></div>
+    <div class="card hover"><h3>&#128546; A generation wants out</h3><p class="mt8"><b id="f-shift">84%</b> say they would shift away from farming if given a better opportunity &mdash; a stark verdict on the profession's future.</p></div>
+  </div>
+  <div class="card mt24" style="border-left:5px solid var(--ks-amber)">
+    <h3>The chain reaction</h3>
+    <p class="mt8 muted">High input costs meet stagnant selling prices (no MSP, reliance on middlemen). Households turn to borrowing, often from moneylenders. Add climate-driven crop loss and groundwater stress, and the result is an income that never sustains &mdash; and a widespread wish to leave farming altogether. KrishiSetu's vulnerability score captures exactly this compounding stress, farmer by farmer.</p>
+  </div>
+  <div class="center mt40"><a href="/dashboard" class="btn-ks">See it visualised &rarr;</a> &nbsp; <a href="/farmers" class="btn-ghost">Browse farmers</a></div>
+</div></section>
+<section class="ks-section alt"><div class="ks-container">
+  <div class="ks-eyebrow">Methodology</div><h2 class="ks-h2">How the vulnerability score works</h2>
+  <p class="ks-lead">Each farmer receives a 0&ndash;100 score built from ten weighted stress indicators &mdash; insufficient income, burdensome input costs, poor government-support satisfaction, groundwater depletion, climate crop loss, no MSP access, middleman reliance, borrowing, loan default and yield dissatisfaction. Scores are banded: <span class="band Low">Low</span> <span class="band Moderate">Moderate</span> <span class="band High">High</span> <span class="band Severe">Severe</span>.</p>
+</div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+{% raw %}<script>
+frappe.call({method:"drinkwell.api.survey.dashboard_stats"}).then(r=>{
+ if(!r||!r.message)return;const ind={};(r.message.indicators||[]).forEach(i=>ind[i.label]=i.value);
+ const set=(id,v)=>{const e=document.getElementById(id);if(e&&v!=null)e.textContent=v+"%";};
+ set("f-income",ind["Income not sufficient"]);set("f-cost",ind["Input costs a burden"]);
+ set("f-msp",ind["Do NOT sell at MSP"]);set("f-water",ind["Groundwater depletion"]);
+ set("f-shift",ind["Wish to quit farming"]);
+ if(ind["Availed PMFBY"]!=null&&ind["Heard of PMFBY"]!=null){var e=document.getElementById("f-pmfby");if(e)e.textContent=ind["Heard of PMFBY"]+"%";}
+});
+</script>{% endraw %}
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "templates/web.html" %}
+{% block title %}Farmer Survey — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b);color:#fff">
+  <div class="ks-container" style="padding:44px 24px 40px">
+    <span class="ks-pill">Farmer survey</span>
+    <h1 style="color:#fff;font-size:2.1rem;margin-top:12px">Share your farming story</h1>
+    <p style="color:#dcefe4;max-width:58ch;margin-top:8px">Five quick steps. Your answers are scored instantly and added to the live dashboard. Nothing here is mandatory except your name and district.</p>
+  </div></section>
+<section class="ks-section"><div class="ks-container" style="max-width:900px">
+  <form id="ksform" class="ks-form" onsubmit="return false">
+    <div class="ks-steps"><div class="st active" data-st="0"><span class="num">1</span>Profile</div><div class="st " data-st="1"><span class="num">2</span>Farm</div><div class="st " data-st="2"><span class="num">3</span>Income & Schemes</div><div class="st " data-st="3"><span class="num">4</span>Climate & Finance</div><div class="st " data-st="4"><span class="num">5</span>Experience</div></div>
+    <div class="ks-panel active" data-panel="0"><h3 style="margin-bottom:6px">Profile</h3><p class="muted" style="margin-bottom:18px">Step 1 of 5</p><div class="fgrid"><div class="field"><label>Full name</label><input type="text" name="farmer_name" required></div><div class="field"><label>District / Region</label><select name="region" required><option value="">Select&hellip;</option><option value="Sonipat">Sonipat</option><option value="Amroha">Amroha</option><option value="S. Nagar">S. Nagar</option></select></div><div class="field"><label>Block</label><select name="block"><option value="">Select&hellip;</option><option value="Sonipat">Sonipat</option><option value="Shohratgarh">Shohratgarh</option><option value="Dhanaura">Dhanaura</option><option value="Hasanpur">Hasanpur</option></select></div><div class="field"><label>Village</label><input type="text" name="village"></div><div class="field"><label>Age</label><input type="number" name="age"></div><div class="field"><label>Gender</label><select name="gender"><option value="">Select&hellip;</option></select></div><div class="field"><label>Education level</label><select name="education_level"><option value="">Select&hellip;</option><option value="Primary">Primary</option><option value="Secondary">Secondary</option><option value="Illiterate">Illiterate</option><option value="Intermediate">Intermediate</option><option value="Higher Education">Higher Education</option><option value="Matriculation">Matriculation</option><option value="Matric">Matric</option><option value="matric">matric</option></select></div><div class="field"><label>Family members</label><input type="number" name="total_family_members"></div></div></div><div class="ks-panel " data-panel="1"><h3 style="margin-bottom:6px">Farm</h3><p class="muted" style="margin-bottom:18px">Step 2 of 5</p><div class="fgrid"><div class="field"><label>Land size</label><select name="land_size"><option value="">Select&hellip;</option><option value="Small">Small</option><option value="Marginal">Marginal</option><option value="Medium">Medium</option><option value="Large">Large</option></select></div><div class="field"><label>Primary crop grown</label><select name="primary_crop"><option value="">Select&hellip;</option><option value="Wheat, Rice">Wheat, Rice</option><option value="Sugarcane, Wheat">Sugarcane, Wheat</option><option value="Wheat, Other">Wheat, Other</option><option value="Wheat, Sugarcane">Wheat, Sugarcane</option></select></div><div class="field"><label>Source of irrigation</label><select name="source_of_irrigation"><option value="">Select&hellip;</option><option value="Borewell">Borewell</option><option value="Borewell, Rainfed">Borewell, Rainfed</option><option value="Mixed">Mixed</option></select></div><div class="field"><label>Avg input cost / acre</label><select name="avg_input_cost_per_acre"><option value="">Select&hellip;</option><option value="10000 - 15000">10000 - 15000</option><option value="More than 15000">More than 15000</option></select></div><div class="field"><label>Source of seeds</label><select name="source_of_seeds"><option value="">Select&hellip;</option><option value="Private dealer">Private dealer</option><option value="Government outlet">Government outlet</option><option value="Saved last year">Saved last year</option><option value="Government outlet, Private dealer">Government outlet, Private dealer</option><option value="Government outlet,  Saved last year">Government outlet,  Saved last year</option></select></div><div class="field"><label>Where do you sell?</label><select name="market_access_point"><option value="">Select&hellip;</option><option value="Local trader">Local trader</option><option value="Mandi">Mandi</option><option value="Not enough to sell">Not enough to sell</option><option value="Direct-to-consumer">Direct-to-consumer</option></select></div><div class="field"><label>Fertilizer usage</label><select name="fertilizer_usage"><option value="">Select&hellip;</option><option value="Only chemical">Only chemical</option><option value="Mixed">Mixed</option></select></div><div class="field"><label>Climate adaptation</label><select name="adaptation_to_climate"><option value="">Select&hellip;</option><option value="Using more Fertilizer and Pesticides">Using more Fertilizer and Pesticides</option><option value="Not Adapted">Not Adapted</option><option value="Shifted crops">Shifted crops</option></select></div></div></div><div class="ks-panel " data-panel="2"><h3 style="margin-bottom:6px">Income & Schemes</h3><p class="muted" style="margin-bottom:18px">Step 3 of 5</p><div class="fgrid"><div class="field"><label>Satisfied with your crop yield (past 2 yrs)?</label><div class="yn"><label><input type="radio" name="satisfied_with_yield" value="Yes"><span>Yes</span></label><label><input type="radio" name="satisfied_with_yield" value="No"><span>No</span></label></div></div><div class="field"><label>Is farming income enough for your household?</label><div class="yn"><label><input type="radio" name="income_sufficient" value="Yes"><span>Yes</span></label><label><input type="radio" name="income_sufficient" value="No"><span>No</span></label></div></div><div class="field"><label>Are input costs a burden?</label><div class="yn"><label><input type="radio" name="input_costs_burden" value="Yes"><span>Yes</span></label><label><input type="radio" name="input_costs_burden" value="No"><span>No</span></label></div></div><div class="field"><label>Trouble accessing quality seeds / fertilizer?</label><div class="yn"><label><input type="radio" name="seed_fertilizer_challenges" value="Yes"><span>Yes</span></label><label><input type="radio" name="seed_fertilizer_challenges" value="No"><span>No</span></label></div></div><div class="field"><label>Access to government subsidies / schemes?</label><div class="yn"><label><input type="radio" name="access_to_subsidies" value="Yes"><span>Yes</span></label><label><input type="radio" name="access_to_subsidies" value="No"><span>No</span></label></div></div><div class="field"><label>Heard of PMFBY crop insurance?</label><div class="yn"><label><input type="radio" name="heard_of_pmfby" value="Yes"><span>Yes</span></label><label><input type="radio" name="heard_of_pmfby" value="No"><span>No</span></label></div></div><div class="field"><label>Ever availed PMFBY insurance?</label><div class="yn"><label><input type="radio" name="availed_pmfby" value="Yes"><span>Yes</span></label><label><input type="radio" name="availed_pmfby" value="No"><span>No</span></label></div></div><div class="field"><label>Do you sell at MSP?</label><div class="yn"><label><input type="radio" name="sells_at_msp" value="Yes"><span>Yes</span></label><label><input type="radio" name="sells_at_msp" value="No"><span>No</span></label></div></div><div class="field"><label>Rely on local middlemen to sell?</label><div class="yn"><label><input type="radio" name="relies_on_middlemen" value="Yes"><span>Yes</span></label><label><input type="radio" name="relies_on_middlemen" value="No"><span>No</span></label></div></div></div></div><div class="ks-panel " data-panel="3"><h3 style="margin-bottom:6px">Climate & Finance</h3><p class="muted" style="margin-bottom:18px">Step 4 of 5</p><div class="fgrid"><div class="field"><label>Faced crop loss due to climate change?</label><div class="yn"><label><input type="radio" name="crop_loss_climate" value="Yes"><span>Yes</span></label><label><input type="radio" name="crop_loss_climate" value="No"><span>No</span></label></div></div><div class="field"><label>Facing groundwater / water shortage?</label><div class="yn"><label><input type="radio" name="groundwater_depletion" value="Yes"><span>Yes</span></label><label><input type="radio" name="groundwater_depletion" value="No"><span>No</span></label></div></div><div class="field"><label>Do you borrow money for agriculture?</label><div class="yn"><label><input type="radio" name="borrows_money" value="Yes"><span>Yes</span></label><label><input type="radio" name="borrows_money" value="No"><span>No</span></label></div></div><div class="field"><label>Ever defaulted on a loan?</label><div class="yn"><label><input type="radio" name="loan_default" value="Yes"><span>Yes</span></label><label><input type="radio" name="loan_default" value="No"><span>No</span></label></div></div><div class="field"><label>Practice any organic methods?</label><div class="yn"><label><input type="radio" name="practices_organic" value="Yes"><span>Yes</span></label><label><input type="radio" name="practices_organic" value="No"><span>No</span></label></div></div><div class="field"><label>Would you shift away from farming if you could?</label><div class="yn"><label><input type="radio" name="wishes_to_shift_away" value="Yes"><span>Yes</span></label><label><input type="radio" name="wishes_to_shift_away" value="No"><span>No</span></label></div></div><div class="field"><label>Main source of farm money</label><select name="primary_source_of_money"><option value="">Select&hellip;</option><option value="Self-financed">Self-financed</option><option value="Moneylender">Moneylender</option><option value="Bank">Bank</option></select></div><div class="field"><label>Satisfaction with govt support</label><select name="govt_support_satisfaction"><option value="">Select&hellip;</option><option value="Not satisfied">Not satisfied</option><option value="Moderately satisfied">Moderately satisfied</option><option value="Highly satisfied">Highly satisfied</option></select></div></div></div><div class="ks-panel " data-panel="4"><h3 style="margin-bottom:6px">Experience</h3><p class="muted" style="margin-bottom:18px">Step 5 of 5</p><div class="fgrid"><div class="field full"><label>Biggest challenge in crop production</label><textarea name="biggest_challenge" rows="2"></textarea></div><div class="field full"><label>How do you cope with crop-failure losses?</label><textarea name="coping_with_losses" rows="2"></textarea></div><div class="field full"><label>What should the government do to help?</label><textarea name="govt_support_suggestions" rows="2"></textarea></div><div class="field full"><label>How has the climate changed in 5-10 yrs?</label><textarea name="climate_change_observation" rows="2"></textarea></div><div class="field full"><label>What farming would you prefer in future & why?</label><textarea name="preferred_future_farming" rows="2"></textarea></div></div></div>
+    <div class="ks-panel-nav">
+      <button type="button" class="btn-ghost" id="btnPrev" style="visibility:hidden">&larr; Back</button>
+      <button type="button" class="btn-ks" id="btnNext">Next &rarr;</button>
+      <button type="button" class="btn-amber" id="btnSubmit" style="display:none">Submit Survey &#10003;</button>
+    </div>
+  </form>
+</div></section>
+<div class="result-modal" id="resModal"><div class="result-box">
+  <div class="result-ring"><canvas id="resGauge" width="130" height="130"></canvas></div>
+  <h2 id="resScore" style="font-size:2.4rem;color:var(--ks-green-d)">&mdash;</h2>
+  <p class="muted">Vulnerability score</p>
+  <div id="resBand" class="mt16"></div>
+  <p class="mt16 muted" id="resMsg">Thank you &mdash; your response has been recorded.</p>
+  <div class="mt24"><a href="/dashboard" class="btn-ks">See the dashboard &rarr;</a>
+   <button class="btn-ghost" onclick="location.reload()">Submit another</button></div>
+</div></div>
+<div class="ks-toast" id="toast"></div>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+{% raw %}<script>
+let step=0;const total=5;
+const panels=[...document.querySelectorAll(".ks-panel")];
+const sts=[...document.querySelectorAll(".ks-steps .st")];
+const bPrev=document.getElementById("btnPrev"),bNext=document.getElementById("btnNext"),bSub=document.getElementById("btnSubmit");
+function show(n){step=n;panels.forEach((p,i)=>p.classList.toggle("active",i===n));
+ sts.forEach((s,i)=>s.classList.toggle("active",i<=n));
+ bPrev.style.visibility=n===0?"hidden":"visible";
+ bNext.style.display=n===total-1?"none":"inline-flex";
+ bSub.style.display=n===total-1?"inline-flex":"none";
+ window.scrollTo({top:document.querySelector(".ks-steps").offsetTop-80,behavior:"smooth"});}
+bNext.onclick=()=>{const req=panels[step].querySelectorAll("[required]");for(const r of req){if(!r.value){r.focus();toast("Please fill this field");return;}}if(step<total-1)show(step+1);};
+bPrev.onclick=()=>{if(step>0)show(step-1);};
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600);}
+function ring(score){const c=document.getElementById("resGauge"),x=c.getContext("2d");x.clearRect(0,0,130,130);
+ const col=score>=70?"#d64545":score>=50?"#e8722e":score>=30?"#f4a723":"#2e9e5b";
+ x.lineWidth=13;x.strokeStyle="#eef3ee";x.beginPath();x.arc(65,65,52,0,2*Math.PI);x.stroke();
+ x.strokeStyle=col;x.beginPath();x.arc(65,65,52,-Math.PI/2,-Math.PI/2+2*Math.PI*(score/100));x.stroke();
+ x.fillStyle=col;x.font="700 26px Poppins,sans-serif";x.textAlign="center";x.fillText(score,65,74);}
+bSub.onclick=()=>{
+ const fd=new FormData(document.getElementById("ksform"));const payload={};
+ fd.forEach((v,k)=>{if(v!=="")payload[k]=v;});
+ bSub.textContent="Submitting…";bSub.disabled=true;
+ frappe.call({method:"drinkwell.api.survey.submit_survey",args:{payload:JSON.stringify(payload)}}).then(r=>{
+   const m=r.message;if(!m||!m.ok){toast("Something went wrong");bSub.disabled=false;bSub.textContent="Submit Survey ✓";return;}
+   document.getElementById("resScore").textContent=m.vulnerability_score;
+   document.getElementById("resBand").innerHTML='<span class="band '+m.vulnerability_band+'">'+m.vulnerability_band+' risk</span>';
+   const msgs={Low:"Comparatively stable — but every voice sharpens the picture.",Moderate:"Some stress signals worth watching.",High:"Multiple stress factors — a priority for support.",Severe:"Severe compounded stress — flagged for urgent attention."};
+   document.getElementById("resMsg").textContent=msgs[m.vulnerability_band]||"Recorded.";
+   ring(m.vulnerability_score);
+   document.getElementById("resModal").classList.add("show");
+ }).catch(e=>{toast("Network error — is the app running?");bSub.disabled=false;bSub.textContent="Submit Survey ✓";});
+};
+show(0);
+</script>{% endraw %}
+{% endblock %}

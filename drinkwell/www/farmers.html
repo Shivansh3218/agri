@@ -1,0 +1,86 @@
+{% extends "templates/web.html" %}
+{% block title %}Farmer Directory — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="active">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b);color:#fff">
+  <div class="ks-container" style="padding:44px 24px 40px">
+    <span class="ks-pill">Farmer directory</span>
+    <h1 style="color:#fff;font-size:2.1rem;margin-top:12px">Every farmer, searchable</h1>
+    <p style="color:#dcefe4;max-width:56ch;margin-top:8px">Filter by district and risk band, search by name or village, and open any farmer for a full assessment report.</p>
+  </div></section>
+<section class="ks-section"><div class="ks-container">
+  <div class="filterbar">
+    <input id="f-search" placeholder="🔍  Search name, village or ID…">
+    <select id="f-region"><option value="">All districts</option><option>Sonipat</option><option>Amroha</option><option>S. Nagar</option></select>
+    <select id="f-band"><option value="">All risk bands</option><option>Low</option><option>Moderate</option><option>High</option><option>Severe</option></select>
+    <button class="btn-ks" id="f-apply">Apply</button>
+  </div>
+  <p class="muted" id="f-count" style="margin-bottom:16px">Loading…</p>
+  <div class="ks-grid g3" id="f-grid"></div>
+  <div class="center mt40"><button class="btn-ghost" id="f-more" style="display:none">Load more</button></div>
+</div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+{% raw %}<script>
+let start=0,PL=24,loading=false,done=false;
+const grid=document.getElementById("f-grid");
+function bandColor(b){return {Low:"#2e9e5b",Moderate:"#f4a723",High:"#e8722e",Severe:"#d64545"}[b]||"#2e9e5b";}
+function card(f){const init=(f.farmer_name||"F").replace("Farmer ","").slice(0,2).toUpperCase();
+ return `<div class="farmer-card" onclick="location.href='/report?id=${encodeURIComponent(f.respondent_id)}'">
+   <div class="top"><div style="display:flex;gap:12px;align-items:center"><div class="avatar">${init}</div>
+     <div><div style="font-weight:700">${f.farmer_name||f.respondent_id}</div>
+     <div class="muted" style="font-size:.82rem">${f.respondent_id}</div></div></div>
+     <span class="band ${f.vulnerability_band}">${f.vulnerability_band}</span></div>
+   <div class="meta"><span>📍 <b>${f.village||"—"}</b>, ${f.region||""}</span><span>🌾 ${f.primary_crop||"—"}</span>
+     <span>👤 ${f.gender||"—"}, ${f.age||"—"} yrs</span></div>
+   <div class="score-bar"><i style="width:${f.vulnerability_score}%;background:${bandColor(f.vulnerability_band)}"></i></div>
+   <div class="muted" style="font-size:.8rem;margin-top:6px">Vulnerability ${f.vulnerability_score}/100</div>
+ </div>`;}
+function load(reset){if(loading)return;loading=true;
+ if(reset){start=0;done=false;grid.innerHTML="";}
+ frappe.call({method:"drinkwell.api.survey.list_farmers",args:{
+   region:document.getElementById("f-region").value,band:document.getElementById("f-band").value,
+   search:document.getElementById("f-search").value,start:start,page_length:PL}}).then(r=>{
+   const m=r.message;loading=false;
+   document.getElementById("f-count").textContent=m.total+" farmers"+(document.getElementById("f-search").value?" matching":"");
+   m.rows.forEach(f=>grid.insertAdjacentHTML("beforeend",card(f)));
+   start+=m.rows.length;done=start>=m.total;
+   document.getElementById("f-more").style.display=done?"none":"inline-flex";
+   if(m.rows.length===0&&start===0)grid.innerHTML='<p class="muted">No farmers match these filters.</p>';
+ }).catch(e=>{loading=false;grid.innerHTML='<div class="card">Could not load. Ensure the app is migrated & seeded.</div>';});}
+document.getElementById("f-apply").onclick=()=>load(true);
+document.getElementById("f-more").onclick=()=>load(false);
+document.getElementById("f-search").addEventListener("keydown",e=>{if(e.key==="Enter")load(true);});
+document.getElementById("f-region").onchange=()=>load(true);
+document.getElementById("f-band").onchange=()=>load(true);
+load(true);
+</script>{% endraw %}
+{% endblock %}

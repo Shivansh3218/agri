@@ -1,0 +1,92 @@
+{% extends "templates/web.html" %}
+{% block title %}Farmer Report — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="active">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-section"><div class="ks-container" style="max-width:960px">
+  <a href="/farmers" class="muted" style="display:inline-block;margin-bottom:18px">&larr; Back to directory</a>
+  <div id="rep-loading" class="loading">Loading farmer report&hellip;</div>
+  <div id="rep-body" style="display:none">
+    <div class="report-hero">
+      <div><div class="ks-pill">Farmer Assessment Report</div>
+        <h1 id="rep-name" style="color:#fff;font-size:2rem;margin-top:12px">&mdash;</h1>
+        <p id="rep-loc" style="color:#dcefe4;margin-top:6px"></p>
+        <div id="rep-band" class="mt16"></div>
+      </div>
+      <div class="gauge"><canvas id="rep-gauge" width="150" height="150"></canvas></div>
+    </div>
+
+    <div class="ks-grid g2 mt24">
+      <div class="card"><h3>Profile</h3><div class="kv mt16" id="rep-profile"></div></div>
+      <div class="card"><h3>Farm & Market</h3><div class="kv mt16" id="rep-farm"></div></div>
+    </div>
+
+    <div class="card mt24"><h3>Risk signals</h3><p class="muted" style="margin-bottom:6px">What is driving this farmer's vulnerability score</p><div id="rep-signals"></div></div>
+
+    <div class="card mt24"><h3>In their words</h3><div id="rep-words" class="mt8"></div></div>
+
+    <div class="center mt40">
+      <button class="btn-ks" onclick="window.print()">🖨 Print / Save PDF</button>
+      <a href="/dashboard" class="btn-ghost">Back to dashboard</a>
+    </div>
+  </div>
+  <div id="rep-error" style="display:none" class="card center"><h3>Farmer not found</h3><p class="muted">Check the link or return to the <a href="/farmers">directory</a>.</p></div>
+</div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+{% raw %}<script>
+const params=new URLSearchParams(location.search);const id=params.get("id");
+function bcol(b){return {Low:"#2e9e5b",Moderate:"#f4a723",High:"#e8722e",Severe:"#d64545"}[b]||"#2e9e5b";}
+function gauge(score){const c=document.getElementById("rep-gauge"),x=c.getContext("2d");
+ const col=bcol(score>=70?"Severe":score>=50?"High":score>=30?"Moderate":"Low");
+ x.lineWidth=15;x.strokeStyle="rgba(255,255,255,.25)";x.beginPath();x.arc(75,75,60,0,2*Math.PI);x.stroke();
+ x.strokeStyle="#fff";x.beginPath();x.arc(75,75,60,-Math.PI/2,-Math.PI/2+2*Math.PI*(score/100));x.stroke();
+ x.fillStyle="#fff";x.font="700 34px Poppins";x.textAlign="center";x.fillText(score,75,80);
+ x.font="500 12px Inter";x.fillText("/ 100",75,98);}
+function cell(k,v){return `<div class="cell"><div class="k">${k}</div><div class="v">${v||"—"}</div></div>`;}
+function yn(k,v){return v==="Yes";}
+if(!id){document.getElementById("rep-loading").style.display="none";document.getElementById("rep-error").style.display="block";}
+else frappe.call({method:"drinkwell.api.survey.farmer_report",args:{respondent_id:id}}).then(r=>{
+ const d=r.message;document.getElementById("rep-loading").style.display="none";
+ if(!d){document.getElementById("rep-error").style.display="block";return;}
+ document.getElementById("rep-body").style.display="block";
+ document.getElementById("rep-name").textContent=d.farmer_name||d.respondent_id;
+ document.getElementById("rep-loc").textContent=`${d.village||""}, ${d.block||""} — ${d.region||""}`;
+ document.getElementById("rep-band").innerHTML=`<span class="band ${d.vulnerability_band}">${d.vulnerability_band} risk</span> <span style="color:#dcefe4;margin-left:8px">Peer avg: ${d.peer_avg_score}</span>`;
+ gauge(d.vulnerability_score);
+ document.getElementById("rep-profile").innerHTML=cell("Respondent ID",d.respondent_id)+cell("Age / Gender",`${d.age||"—"} / ${d.gender||"—"}`)+cell("Education",d.education_level)+cell("Family size",d.total_family_members);
+ document.getElementById("rep-farm").innerHTML=cell("Primary crop",d.primary_crop)+cell("Land size",d.land_size)+cell("Irrigation",d.source_of_irrigation)+cell("Sells at",d.market_access_point);
+ const signals=[["Income not sufficient",d.income_sufficient==="No"],["Input costs a burden",yn("",d.input_costs_burden)],["Not selling at MSP",d.sells_at_msp==="No"],["Relies on middlemen",yn("",d.relies_on_middlemen)],["Groundwater depletion",yn("",d.groundwater_depletion)],["Climate crop loss",yn("",d.crop_loss_climate)],["Borrows money",yn("",d.borrows_money)],["Loan default",yn("",d.loan_default)],["Yield dissatisfaction",d.satisfied_with_yield==="No"],["Low govt-support satisfaction",d.govt_support_satisfaction==="Not satisfied"]];
+ document.getElementById("rep-signals").innerHTML=signals.map(s=>`<div class="rec"><span class="dot" style="background:${s[1]?"#d64545":"#2e9e5b"}"></span><div><b>${s[0]}</b><div class="muted" style="font-size:.85rem">${s[1]?"Flagged — contributing to risk":"Not a concern"}</div></div></div>`).join("");
+ const words=[["Biggest challenge",d.biggest_challenge],["Coping with losses",d.coping_with_losses],["Suggestions for government",d.govt_support_suggestions],["Climate observed",d.climate_change_observation],["Preferred future",d.preferred_future_farming]].filter(w=>w[1]);
+ document.getElementById("rep-words").innerHTML=words.length?words.map(w=>`<p class="mt8"><b>${w[0]}:</b> <span class="muted">${w[1]}</span></p>`).join(""):'<p class="muted">No open-ended responses recorded.</p>';
+}).catch(e=>{document.getElementById("rep-loading").style.display="none";document.getElementById("rep-error").style.display="block";});
+</script>{% endraw %}
+{% endblock %}

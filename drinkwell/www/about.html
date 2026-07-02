@@ -1,0 +1,76 @@
+{% extends "templates/web.html" %}
+{% block title %}About — KrishiSetu{% endblock %}
+{% block head_include %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/drinkwell/css/krishisetu.css">
+
+{% endblock %}
+{% block page_content %}
+<div class="ks-root">
+<header class="ks-nav"><div class="ks-container ks-nav-in">
+  <a href="/" class="ks-logo"><span class="leaf">&#127807;</span> KrishiSetu</a>
+  <button class="ks-burger" onclick="document.getElementById('kslinks').classList.toggle('open')">&#9776;</button>
+  <nav class="ks-links" id="kslinks"><a href="/" class="">Home</a><a href="/dashboard" class="">Dashboard</a><a href="/farmers" class="">Farmers</a><a href="/insights" class="">Insights</a><a href="/schemes" class="">Schemes</a><a href="/about" class="active">About</a>
+    <a href="/app/farmer-survey-response" class="btn-ghost" style="margin-left:6px">Admin</a>
+    <a href="/survey" class="btn-ks">Take Survey</a>
+  </nav>
+</div></header>
+<section class="ks-hero ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b)">
+  <img class="bgimg" src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=1200&q=80" onerror="this.style.display='none'"><div class="veil"></div>
+  <div class="ks-hero-in"><span class="ks-pill">About the project</span>
+    <h1>Data with a purpose: dignity for the farmer.</h1>
+    <p>KrishiSetu began with a simple question &mdash; if we actually listened to farmers at scale, what would the data tell us to do differently?</p>
+  </div></section>
+<section class="ks-section"><div class="ks-container ks-grid g2" style="align-items:start">
+  <div>
+    <div class="ks-eyebrow">The mission</div><h2 class="ks-h2">Bridging the gap between farmers and decision-makers</h2>
+    <p class="ks-lead">Across rural India, the people who grow our food are often invisible in the numbers that shape policy. KrishiSetu is a bridge (a <i>setu</i>) &mdash; carrying the lived reality of the farmer into a form that officers, NGOs and policymakers can see, sort and act on.</p>
+    <p class="ks-lead mt16">This platform is built on a real survey of 396 farmers across three districts, asking 42 questions each about yield, income, water, credit, climate and government support. Every answer is preserved, scored and made explorable.</p>
+  </div>
+  <div class="card">
+    <h3>At a glance</h3>
+    <div class="kv mt16">
+      <div class="cell"><div class="k">Farmers surveyed</div><div class="v">396</div></div>
+      <div class="cell"><div class="k">Districts</div><div class="v">Sonipat, Amroha, S. Nagar</div></div>
+      <div class="cell"><div class="k">Questions each</div><div class="v">42</div></div>
+      <div class="cell"><div class="k">Data points</div><div class="v">16,000+</div></div>
+      <div class="cell"><div class="k">Built on</div><div class="v">Frappe Framework v15</div></div>
+      <div class="cell"><div class="k">Managed by</div><div class="v">10x Impact</div></div>
+    </div>
+  </div>
+</div></section>
+<section class="ks-section alt"><div class="ks-container">
+  <div class="center" style="max-width:680px;margin:0 auto 40px"><div class="ks-eyebrow">What we measure</div><h2 class="ks-h2">Six dimensions of farmer wellbeing</h2></div>
+  <div class="ks-grid g3">
+    <div class="card"><div class="ic">&#128176;</div><h3>Income & Costs</h3><p>Whether farming sustains the household, and how heavily input costs weigh.</p></div>
+    <div class="card"><div class="ic">&#127786;</div><h3>Climate & Water</h3><p>Crop loss from climate change and the pressure on groundwater.</p></div>
+    <div class="card"><div class="ic">&#127974;</div><h3>Schemes & Credit</h3><p>Access to PMFBY, subsidies, MSP and formal versus informal credit.</p></div>
+    <div class="card"><div class="ic">&#128722;</div><h3>Market Access</h3><p>Reliance on middlemen versus mandis and direct-to-consumer sales.</p></div>
+    <div class="card"><div class="ic">&#127793;</div><h3>Practices</h3><p>Fertilizer patterns, organic adoption and adaptation strategies.</p></div>
+    <div class="card"><div class="ic">&#128499;</div><h3>Sentiment</h3><p>Satisfaction with support and the desire to stay in &mdash; or leave &mdash; farming.</p></div>
+  </div>
+</div></section>
+<section class="ks-full" style="background:linear-gradient(135deg,#0f5132,#1a7f4b)"><div class="ks-container center" style="padding:64px 24px;color:#fff">
+  <h2 style="color:#fff">See the story the data tells.</h2>
+  <p style="color:#dcefe4;margin:12px auto 24px;max-width:50ch">Explore the live dashboard or read the key findings from the field.</p>
+  <a href="/dashboard" class="btn-amber">Open the Dashboard &rarr;</a>
+</div></section>
+<footer class="ks-footer"><div class="ks-container">
+  <div class="cols">
+    <div>
+      <div class="ks-logo" style="color:#fff"><span class="leaf">&#127807;</span> KrishiSetu</div>
+      <p class="mt16" style="color:#a7c6b4;max-width:42ch">A farmer insights & survey platform bridging ground-level data with better agricultural decisions. Built on real field surveys across Sonipat, Amroha & Sambhal Nagar.</p>
+    </div>
+    <div><h4>Platform</h4>
+      <a href="/dashboard">Analytics Dashboard</a><a href="/farmers">Farmer Directory</a>
+      <a href="/insights">Insights & Findings</a><a href="/survey">Take the Survey</a></div>
+    <div><h4>Resources</h4>
+      <a href="/schemes">Government Schemes</a><a href="/about">About the Project</a>
+      <a href="/app">Frappe Desk</a></div>
+  </div>
+  <div class="bottom"><span>&copy; 2026 KrishiSetu &middot; 10x Impact</span><span>396 farmers surveyed &middot; 3 districts</span></div>
+</div></footer>
+</div>
+
+{% endblock %}

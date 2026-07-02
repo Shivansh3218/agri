@@ -1,0 +1,455 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-01-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "sec_respondent",
+  "respondent_id",
+  "farmer_name",
+  "cb_r",
+  "region",
+  "block",
+  "village",
+  "sec_demo",
+  "age",
+  "gender",
+  "cb_d",
+  "education_level",
+  "total_family_members",
+  "sec_farm",
+  "land_size",
+  "primary_crop",
+  "source_of_irrigation",
+  "avg_input_cost_per_acre",
+  "cb_f",
+  "source_of_seeds",
+  "market_access_point",
+  "fertilizer_usage",
+  "adaptation_to_climate",
+  "sec_income",
+  "satisfied_with_yield",
+  "income_sufficient",
+  "cb_i",
+  "input_costs_burden",
+  "seed_fertilizer_challenges",
+  "sec_scheme",
+  "access_to_subsidies",
+  "heard_of_pmfby",
+  "availed_pmfby",
+  "cb_s",
+  "sells_at_msp",
+  "msp_awareness_level",
+  "relies_on_middlemen",
+  "sec_climate",
+  "crop_loss_climate",
+  "groundwater_depletion",
+  "crop_loss_frequency",
+  "cb_c",
+  "borrows_money",
+  "loan_default",
+  "primary_source_of_money",
+  "sec_sent",
+  "govt_support_satisfaction",
+  "perceived_price_fairness",
+  "major_challenges",
+  "cb_se",
+  "wishes_to_shift_away",
+  "practices_organic",
+  "sec_open",
+  "biggest_challenge",
+  "coping_with_losses",
+  "govt_support_suggestions",
+  "climate_change_observation",
+  "preferred_future_farming",
+  "sec_assess",
+  "vulnerability_score",
+  "cb_a",
+  "vulnerability_band"
+ ],
+ "fields": [
+  {
+   "fieldname": "sec_respondent",
+   "fieldtype": "Section Break",
+   "label": "Respondent"
+  },
+  {
+   "fieldname": "respondent_id",
+   "fieldtype": "Data",
+   "label": "Respondent ID",
+   "reqd": 1,
+   "in_list_view": 1
+  },
+  {
+   "fieldname": "farmer_name",
+   "fieldtype": "Data",
+   "label": "Farmer Name",
+   "in_list_view": 1,
+   "bold": 1
+  },
+  {
+   "fieldname": "cb_r",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "region",
+   "fieldtype": "Select",
+   "label": "Region",
+   "options": "Sonipat\nAmroha\nS. Nagar",
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "block",
+   "fieldtype": "Data",
+   "label": "Block",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "label": "Village"
+  },
+  {
+   "fieldname": "sec_demo",
+   "fieldtype": "Section Break",
+   "label": "Demographics"
+  },
+  {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "label": "Gender",
+   "options": "M\nF",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "cb_d",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "education_level",
+   "fieldtype": "Data",
+   "label": "Education Level",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "total_family_members",
+   "fieldtype": "Int",
+   "label": "Total Family Members"
+  },
+  {
+   "fieldname": "sec_farm",
+   "fieldtype": "Section Break",
+   "label": "Farm Profile"
+  },
+  {
+   "fieldname": "land_size",
+   "fieldtype": "Data",
+   "label": "Land Size"
+  },
+  {
+   "fieldname": "primary_crop",
+   "fieldtype": "Data",
+   "label": "Primary Crop Grown",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "source_of_irrigation",
+   "fieldtype": "Data",
+   "label": "Source of Irrigation"
+  },
+  {
+   "fieldname": "avg_input_cost_per_acre",
+   "fieldtype": "Data",
+   "label": "Avg Input Cost / Acre"
+  },
+  {
+   "fieldname": "cb_f",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source_of_seeds",
+   "fieldtype": "Data",
+   "label": "Source of Seeds"
+  },
+  {
+   "fieldname": "market_access_point",
+   "fieldtype": "Data",
+   "label": "Market Access Point"
+  },
+  {
+   "fieldname": "fertilizer_usage",
+   "fieldtype": "Data",
+   "label": "Fertilizer Usage Pattern"
+  },
+  {
+   "fieldname": "adaptation_to_climate",
+   "fieldtype": "Data",
+   "label": "Adaptation to Climate Change"
+  },
+  {
+   "fieldname": "sec_income",
+   "fieldtype": "Section Break",
+   "label": "Yield & Income"
+  },
+  {
+   "fieldname": "satisfied_with_yield",
+   "fieldtype": "Select",
+   "label": "Satisfied with crop yield (2y)?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "income_sufficient",
+   "fieldtype": "Select",
+   "label": "Farming income sufficient?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "cb_i",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "input_costs_burden",
+   "fieldtype": "Select",
+   "label": "Input costs a burden?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "seed_fertilizer_challenges",
+   "fieldtype": "Select",
+   "label": "Seed/fertilizer access challenges?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "sec_scheme",
+   "fieldtype": "Section Break",
+   "label": "Schemes & Market"
+  },
+  {
+   "fieldname": "access_to_subsidies",
+   "fieldtype": "Select",
+   "label": "Access to subsidies/schemes?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "heard_of_pmfby",
+   "fieldtype": "Select",
+   "label": "Heard of PMFBY?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "availed_pmfby",
+   "fieldtype": "Select",
+   "label": "Availed PMFBY insurance?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "cb_s",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "sells_at_msp",
+   "fieldtype": "Select",
+   "label": "Sells crop at MSP?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "msp_awareness_level",
+   "fieldtype": "Data",
+   "label": "MSP Awareness Level"
+  },
+  {
+   "fieldname": "relies_on_middlemen",
+   "fieldtype": "Select",
+   "label": "Relies on middlemen?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "sec_climate",
+   "fieldtype": "Section Break",
+   "label": "Climate, Water & Finance"
+  },
+  {
+   "fieldname": "crop_loss_climate",
+   "fieldtype": "Select",
+   "label": "Crop loss due to climate?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "groundwater_depletion",
+   "fieldtype": "Select",
+   "label": "Groundwater depletion?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "crop_loss_frequency",
+   "fieldtype": "Data",
+   "label": "Crop Loss Frequency (3y)"
+  },
+  {
+   "fieldname": "cb_c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "borrows_money",
+   "fieldtype": "Select",
+   "label": "Borrows money for agriculture?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "loan_default",
+   "fieldtype": "Select",
+   "label": "Ever defaulted on a loan?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "primary_source_of_money",
+   "fieldtype": "Data",
+   "label": "Primary Source of Money"
+  },
+  {
+   "fieldname": "sec_sent",
+   "fieldtype": "Section Break",
+   "label": "Sentiment"
+  },
+  {
+   "fieldname": "govt_support_satisfaction",
+   "fieldtype": "Select",
+   "label": "Govt Support Satisfaction",
+   "options": "Not satisfied\nModerately satisfied\nHighly satisfied",
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "perceived_price_fairness",
+   "fieldtype": "Data",
+   "label": "Perceived Price Fairness"
+  },
+  {
+   "fieldname": "major_challenges",
+   "fieldtype": "Data",
+   "label": "Major Farming Challenges"
+  },
+  {
+   "fieldname": "cb_se",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wishes_to_shift_away",
+   "fieldtype": "Select",
+   "label": "Wishes to shift away from farming?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "practices_organic",
+   "fieldtype": "Select",
+   "label": "Practices organic farming?",
+   "options": "Yes\nNo"
+  },
+  {
+   "fieldname": "sec_open",
+   "fieldtype": "Section Break",
+   "label": "Open Responses",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "biggest_challenge",
+   "fieldtype": "Small Text",
+   "label": "Biggest challenge in crop production"
+  },
+  {
+   "fieldname": "coping_with_losses",
+   "fieldtype": "Small Text",
+   "label": "How they cope with losses"
+  },
+  {
+   "fieldname": "govt_support_suggestions",
+   "fieldtype": "Small Text",
+   "label": "Govt support suggestions"
+  },
+  {
+   "fieldname": "climate_change_observation",
+   "fieldtype": "Small Text",
+   "label": "Climate change observed (5-10y)"
+  },
+  {
+   "fieldname": "preferred_future_farming",
+   "fieldtype": "Small Text",
+   "label": "Preferred future farming approach"
+  },
+  {
+   "fieldname": "sec_assess",
+   "fieldtype": "Section Break",
+   "label": "Assessment"
+  },
+  {
+   "fieldname": "vulnerability_score",
+   "fieldtype": "Int",
+   "label": "Vulnerability Score",
+   "read_only": 1,
+   "in_list_view": 1,
+   "bold": 1,
+   "description": "Auto-computed 0-100 risk score"
+  },
+  {
+   "fieldname": "cb_a",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vulnerability_band",
+   "fieldtype": "Select",
+   "label": "Vulnerability Band",
+   "options": "Low\nModerate\nHigh\nSevere",
+   "read_only": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Drinkwell",
+ "name": "Farmer Survey Response",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 1,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  },
+  {
+   "role": "Agriculture Officer",
+   "read": 1,
+   "write": 1,
+   "create": 1,
+   "delete": 0,
+   "report": 1,
+   "export": 1,
+   "print": 1,
+   "email": 1,
+   "share": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1,
+ "autoname": "field:respondent_id",
+ "naming_rule": "By fieldname",
+ "title_field": "farmer_name",
+ "search_fields": "farmer_name,village,region"
+}
