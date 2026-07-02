@@ -2,15 +2,14 @@
 # Replaces default/drinkwell branding with KrishiSetu across desk, login and website.
 import frappe
 
-LOGO = "/assets/drinkwell/images/logo.svg"
 MARK = "/assets/drinkwell/images/mark.svg"
 
 
 def apply_branding():
-    # Desk navbar logo
+    # Desk navbar — no logo, name only
     try:
         nb = frappe.get_single("Navbar Settings")
-        nb.app_logo = LOGO
+        nb.app_logo = ""
         nb.save(ignore_permissions=True)
     except Exception:
         pass
@@ -18,8 +17,8 @@ def apply_branding():
     try:
         ws = frappe.get_single("Website Settings")
         ws.app_name = "KrishiSetu"
-        ws.brand_html = '<img src="%s" style="height:26px">' % LOGO
-        ws.banner_image = LOGO
+        ws.brand_html = "KrishiSetu"
+        ws.banner_image = ""
         ws.favicon = MARK
         ws.splash_image = MARK
         ws.home_page = "index"
