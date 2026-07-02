@@ -6,25 +6,16 @@ MARK = "/assets/drinkwell/images/mark.svg"
 
 
 def apply_branding():
-    # Desk navbar — no logo, name only
-    try:
-        nb = frappe.get_single("Navbar Settings")
-        nb.app_logo = ""
-        nb.save(ignore_permissions=True)
-    except Exception:
-        pass
+    # Desk navbar — clear logo so only the app name text shows
+    frappe.db.set_single_value("Navbar Settings", "app_logo", None)
+
     # Website brand / login page / favicon
-    try:
-        ws = frappe.get_single("Website Settings")
-        ws.app_name = "KrishiSetu"
-        ws.brand_html = "KrishiSetu"
-        ws.banner_image = ""
-        ws.favicon = MARK
-        ws.splash_image = MARK
-        ws.home_page = "index"
-        ws.save(ignore_permissions=True)
-    except Exception:
-        pass
+    frappe.db.set_single_value("Website Settings", "app_name", "KrishiSetu")
+    frappe.db.set_single_value("Website Settings", "brand_html", "KrishiSetu")
+    frappe.db.set_single_value("Website Settings", "banner_image", None)
+    frappe.db.set_single_value("Website Settings", "favicon", MARK)
+    frappe.db.set_single_value("Website Settings", "splash_image", MARK)
+    frappe.db.set_single_value("Website Settings", "home_page", "index")
     # System-wide app name (drives "Login to <app>")
     try:
         frappe.db.set_single_value("System Settings", "app_name", "KrishiSetu")
