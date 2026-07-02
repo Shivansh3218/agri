@@ -199,21 +199,20 @@ img{max-width:100%;display:block}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js-ready .reveal{opacity:1;transform:none}}
 
 /* ================= CUSTOM LOGIN ================= */
-body.ks-login{background:linear-gradient(135deg,#0f5132 0%,#1a7f4b 60%,#2e9e5b 100%)!important;min-height:100vh}
-body.ks-login::before{content:"";position:fixed;inset:0;background:url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80') center/cover no-repeat;opacity:.14;z-index:-1;pointer-events:none}
-body.ks-login .navbar,body.ks-login header.navbar,body.ks-login .navbar-brand,body.ks-login .web-footer,body.ks-login footer{display:none!important}
-.ks-login-brand{position:fixed;top:5vh;left:0;right:0;text-align:center;color:#fff;z-index:3;pointer-events:none;padding:0 16px}
-.ks-login-brand .lg{font-family:'Poppins','Inter',sans-serif;font-weight:700;font-size:1.7rem;display:inline-flex;align-items:center;gap:9px;color:#fff}
-.ks-login-brand p{color:#dcefe4;margin-top:6px;font-size:1rem}
-.ks-login-back{position:fixed;bottom:4vh;left:0;right:0;text-align:center;color:#dcefe4!important;z-index:3;font-weight:600;font-size:.95rem}
-.ks-login-back:hover{color:#fff!important}
-body.ks-login .page-card{position:relative;z-index:2;margin:0 auto!important;width:100%;max-width:400px;background:#fff!important;border:none!important;border-radius:16px!important;box-shadow:0 26px 64px rgba(0,0,0,.34)!important;padding:34px 32px!important}
-body.ks-login .page-card-head{font-family:'Poppins','Inter',sans-serif;margin-bottom:14px}
-body.ks-login .page-card-head img,body.ks-login .navbar img{display:none!important}
+body.ks-login{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:24px 16px;background:linear-gradient(135deg,#0f5132 0%,#1a7f4b 60%,#2e9e5b 100%)!important}
+body.ks-login::before{content:"";position:fixed;inset:0;background:url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=1600&q=80') center/cover no-repeat;opacity:.13;z-index:-1;pointer-events:none}
+body.ks-login .navbar,body.ks-login header.navbar,body.ks-login .navbar-brand,body.ks-login .web-footer,body.ks-login footer,body.ks-login .footer{display:none!important}
+body.ks-login .login-content,body.ks-login .page-card-container{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+body.ks-login .page-card{position:relative;z-index:2;margin:0 auto!important;width:100%;max-width:400px;background:#fff!important;border:none!important;border-radius:18px!important;box-shadow:0 26px 64px rgba(0,0,0,.34)!important;padding:36px 32px!important}
+.ks-card-logo{font-family:'Poppins','Inter',sans-serif;font-weight:700;font-size:1.55rem;color:var(--ks-green-d);display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:2px}
+body.ks-login .page-card-head{text-align:center;color:var(--ks-muted)!important;font-family:'Inter',sans-serif;font-weight:500;font-size:.95rem;margin-bottom:22px}
+body.ks-login .page-card-head img{display:none!important}
 body.ks-login .form-control,body.ks-login input.form-control{border-radius:10px!important;padding:11px 14px!important}
 body.ks-login .btn-primary,body.ks-login .btn-login,body.ks-login .btn-modal-primary,body.ks-login .btn.btn-primary{background:var(--ks-green)!important;border-color:var(--ks-green)!important;border-radius:10px!important;box-shadow:none!important}
 body.ks-login .btn-primary:hover,body.ks-login .btn-login:hover{background:var(--ks-green-d)!important}
 body.ks-login a{color:var(--ks-green-d)}
+.ks-login-back{position:fixed;bottom:3vh;left:0;right:0;text-align:center;color:rgba(255,255,255,.85)!important;z-index:3;font-weight:600;font-size:.9rem}
+.ks-login-back:hover{color:#fff!important}
 
 /* ================= DASHBOARD CLEANUP ================= */
 .dash-hero{background:linear-gradient(135deg,#0f5132,#1a7f4b 60%,#2e9e5b)}
